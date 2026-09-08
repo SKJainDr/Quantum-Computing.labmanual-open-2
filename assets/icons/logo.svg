@@ -1,0 +1,108 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+  <defs>
+    <radialGradient id="bg" cx="50%" cy="34%" r="75%">
+      <stop offset="0%" stop-color="#28407F"/>
+      <stop offset="55%" stop-color="#182559"/>
+      <stop offset="100%" stop-color="#0D1636"/>
+    </radialGradient>
+
+    <linearGradient id="gold" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#F6D488"/>
+      <stop offset="50%" stop-color="#E0A93A"/>
+      <stop offset="100%" stop-color="#A9781F"/>
+    </linearGradient>
+    <radialGradient id="nucleus" cx="35%" cy="30%" r="75%">
+      <stop offset="0%" stop-color="#F9E7B8"/>
+      <stop offset="55%" stop-color="#E0A93A"/>
+      <stop offset="100%" stop-color="#A9781F"/>
+    </radialGradient>
+
+    <linearGradient id="lens" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#6C7BAA"/>
+      <stop offset="100%" stop-color="#454F79"/>
+    </linearGradient>
+
+    <linearGradient id="book1" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#6699EE"/>
+      <stop offset="100%" stop-color="#2A53AB"/>
+    </linearGradient>
+    <linearGradient id="book1side" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#3E6BC4"/>
+      <stop offset="100%" stop-color="#1E3E85"/>
+    </linearGradient>
+
+    <linearGradient id="book2" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#C13D69"/>
+      <stop offset="100%" stop-color="#8A2350"/>
+    </linearGradient>
+    <linearGradient id="book2side" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#9C2E56"/>
+      <stop offset="100%" stop-color="#6E1B40"/>
+    </linearGradient>
+
+    <linearGradient id="book3" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#1FA98F"/>
+      <stop offset="100%" stop-color="#0C6857"/>
+    </linearGradient>
+    <linearGradient id="book3side" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#188A75"/>
+      <stop offset="100%" stop-color="#094F42"/>
+    </linearGradient>
+
+    <linearGradient id="barrel" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#F6D488"/>
+      <stop offset="45%" stop-color="#E0A93A"/>
+      <stop offset="100%" stop-color="#A9781F"/>
+    </linearGradient>
+    <linearGradient id="grip" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#4B4B50"/>
+      <stop offset="50%" stop-color="#2B2B2F"/>
+      <stop offset="100%" stop-color="#161618"/>
+    </linearGradient>
+  </defs>
+
+  <!-- background -->
+  <rect x="0" y="0" width="512" height="512" rx="108" fill="url(#bg)"/>
+
+  <!-- atom -->
+  <g transform="translate(256,118)" fill="none" stroke-linecap="round">
+    <ellipse cx="0" cy="0" rx="128" ry="46" stroke="#2DD4BF" stroke-width="11" transform="rotate(-6)"/>
+    <ellipse cx="0" cy="0" rx="128" ry="46" stroke="#F472B6" stroke-width="11" transform="rotate(58)"/>
+    <ellipse cx="0" cy="0" rx="128" ry="46" stroke="#60A5FA" stroke-width="11" transform="rotate(-64)"/>
+    <circle cx="0" cy="0" r="17" fill="url(#nucleus)" stroke="#0D1636" stroke-width="1.5"/>
+  </g>
+
+  <!-- pen -->
+  <g transform="translate(258,234) rotate(-12)">
+    <!-- barrel -->
+    <rect x="-140" y="-16" width="220" height="32" rx="16" fill="url(#barrel)"/>
+    <!-- barrel highlight -->
+    <path d="M -125 -6 Q -30 -16 55 -8" fill="none" stroke="#FBEFCB" stroke-width="6" stroke-linecap="round" opacity="0.55"/>
+    <!-- metal band -->
+    <rect x="-8" y="-17" width="14" height="34" fill="#8A5A15"/>
+    <!-- grip -->
+    <path d="M 55 -18 L 100 -14 Q 112 0 100 14 L 55 18 Z" fill="url(#grip)"/>
+    <path d="M 62 -9 L 96 -6" stroke="#7A7A80" stroke-width="4" stroke-linecap="round" opacity="0.7"/>
+    <!-- nib -->
+    <path d="M 100 -14 L 150 0 L 100 14 Z" fill="url(#barrel)"/>
+    <path d="M 106 0 L 148 0" stroke="#8A5A15" stroke-width="2.5"/>
+  </g>
+
+  <!-- book stack -->
+  <g>
+    <!-- book 1 -->
+    <path d="M 90 320 L 405 320 L 422 336 L 422 388 L 107 388 L 90 372 Z" fill="url(#book1side)"/>
+    <rect x="90" y="262" width="332" height="64" rx="12" fill="url(#book1)"/>
+    <text x="256" y="303" text-anchor="middle" font-family="Georgia, 'Times New Roman', serif" font-weight="700" font-size="30" fill="#F5EFE0">VOL. I</text>
+
+    <!-- book 2 -->
+    <path d="M 90 400 L 405 400 L 422 416 L 422 468 L 107 468 L 90 452 Z" fill="url(#book2side)"/>
+    <rect x="90" y="342" width="332" height="64" rx="12" fill="url(#book2)"/>
+    <text x="256" y="383" text-anchor="middle" font-family="Georgia, 'Times New Roman', serif" font-weight="700" font-size="30" fill="#F5EFE0">VOL. II</text>
+
+    <!-- book 3 -->
+    <path d="M 90 480 L 405 480 L 422 496 L 422 486 L 107 486 L 90 480 Z" fill="url(#book3side)"/>
+    <rect x="90" y="422" width="332" height="64" rx="12" fill="url(#book3)"/>
+    <text x="256" y="463" text-anchor="middle" font-family="Georgia, 'Times New Roman', serif" font-weight="700" font-size="28" fill="#F5EFE0">VOL. III</text>
+  </g>
+</svg>

@@ -1,0 +1,78 @@
+[
+  {
+    "file": "00-front-matter.md",
+    "title": "Front Matter & Preface"
+  },
+  {
+    "file": "01-lab-setup.md",
+    "title": "Introduction to Quantum Computing Laboratory II"
+  },
+  {
+    "file": "02-experiment-16.md",
+    "title": "Exp. 16: Quantum State Tomography — Full 2-Qubit Reconstruction"
+  },
+  {
+    "file": "03-experiment-17.md",
+    "title": "Exp. 17: Randomised Benchmarking of IBM Quantum Hardware"
+  },
+  {
+    "file": "04-experiment-18.md",
+    "title": "Exp. 18: Zero-Noise Extrapolation — Quantum Error Mitigation"
+  },
+  {
+    "file": "05-experiment-19.md",
+    "title": "Exp. 19: Shor's Algorithm — Period Finding and Factoring N=15"
+  },
+  {
+    "file": "06-experiment-20.md",
+    "title": "Exp. 20: VQE for H₂ — Molecular Ground State Energy"
+  },
+  {
+    "file": "07-experiment-21.md",
+    "title": "Exp. 21: QAOA for MaxCut — Graph Optimisation"
+  },
+  {
+    "file": "08-experiment-22.md",
+    "title": "Exp. 22: 3-Qubit Error Correction — Bit-Flip and Phase-Flip Codes"
+  },
+  {
+    "file": "09-experiment-23.md",
+    "title": "Exp. 23: Steane [[7,1,3]] Error Correcting Code"
+  },
+  {
+    "file": "10-experiment-24.md",
+    "title": "Exp. 24: Quantum Machine Learning — Binary Classifier"
+  },
+  {
+    "file": "11-experiment-25.md",
+    "title": "Exp. 25: Ising Model Trotter Simulation on IBM Hardware"
+  },
+  {
+    "file": "12-experiment-26.md",
+    "title": "Exp. 26: Quantum Phase Estimation — Eigenvalue Extraction"
+  },
+  {
+    "file": "13-experiment-27.md",
+    "title": "Exp. 27: BB84 QKD Protocol — Eavesdropping Security Analysis"
+  },
+  {
+    "file": "14-experiment-28.md",
+    "title": "Exp. 28: Hardware-Aware Circuit Optimisation and Transpilation"
+  },
+  {
+    "file": "15-experiment-29.md",
+    "title": "Exp. 29: Expectation Value Sweeps with Error Mitigation on IBM Hardware"
+  },
+  {
+    "file": "16-experiment-30.md",
+    "title": "Exp. 30: Independent Mini-Project — Novel Quantum Circuit Design"
+  },
+  {
+    "file": "17-assessment-guide.md",
+    "title": "Assessment Guide — Lab Record and Examination"
+  },
+  {
+    "file": "18-index.md",
+    "title": "Index — Lab Manual II"
+  }
+]
