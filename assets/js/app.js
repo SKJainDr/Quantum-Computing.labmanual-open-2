@@ -339,7 +339,7 @@
       { label: "Volume I — Quantum Computers (Textbook)", url: "https://skjaindr.github.io/Quantum-Computing.book-open-1/" },
       { label: "Volume II — Quantum Algorithms & Complexity (Textbook)", url: "https://skjaindr.github.io/Quantum-Computing.book-open-2/" },
       { label: "Volume III — Quantum Hardware, Error Correction & Applications", url: "https://skjaindr.github.io/Quantum-Computing.book-open-3" },
-      { label: "Lab Manual I — Foundational Quantum Experiments", url: "https://skjaindr.github.io/quantum-computing-labmanual-open-1/" },
+      { label: "Lab Manual I — Foundational Quantum Experiments", url: "https://skjaindr.github.io/quantum-computing-lab-manual-1-site-plain/" },
   ];
 
   function initSeriesLinks() {
@@ -363,7 +363,7 @@
   const likeBtn = document.getElementById("likeBtn");
   const likeCountEl = document.getElementById("likeCount");
   const visitorCountEl = document.getElementById("visitorCount");
-  const LIKE_STORAGE_KEY = "qc-liked";
+  const LIKE_STORAGE_KEY = "qc-liked-" + COUNTER_NAMESPACE; // per book: books share one browser origin
 
   async function initVisitorCounter() {
     if (!visitorCountEl) return;
@@ -378,35 +378,46 @@
 
   async function initLikeButton() {
     if (!likeBtn) return;
-    const alreadyLiked = localStorage.getItem(LIKE_STORAGE_KEY) === "1";
-    if (alreadyLiked) likeBtn.classList.add("liked");
+    if (localStorage.getItem(LIKE_STORAGE_KEY) === "1") likeBtn.classList.add("liked");
 
+    let likeSent = false; // true once this visitor's like has been sent, so a late count-load can't overwrite it
+
+    // Attach the click handler first, so a like is never ignored while the count is still loading.
+    likeBtn.addEventListener("click", async () => {
+      if (localStorage.getItem(LIKE_STORAGE_KEY) === "1") return; // like once per visitor (per book)
+      const prevText = likeCountEl.textContent;
+      const prev = parseInt(prevText.replace(/,/g, ""), 10);
+      likeSent = true;
+      likeBtn.classList.add("liked");
+      localStorage.setItem(LIKE_STORAGE_KEY, "1");
+      if (!isNaN(prev)) likeCountEl.textContent = (prev + 1).toLocaleString(); // optimistic update
+      try {
+        const res = await fetch(`${ABACUS_BASE}/hit/${COUNTER_NAMESPACE}/likes`, { cache: "no-store" });
+        if (!res.ok) throw new Error("HTTP " + res.status);
+        const data = await res.json();
+        likeCountEl.textContent = data.value.toLocaleString();
+      } catch (err) {
+        // The like was NOT recorded on the server: undo, so the visitor can simply click again.
+        likeSent = false;
+        likeBtn.classList.remove("liked");
+        localStorage.removeItem(LIKE_STORAGE_KEY);
+        likeCountEl.textContent = prevText;
+      }
+    });
+
+    // Read the shared like count from the server on every visit (never from the browser cache).
     try {
-      const res = await fetch(`${ABACUS_BASE}/get/${COUNTER_NAMESPACE}/likes`);
+      const res = await fetch(`${ABACUS_BASE}/get/${COUNTER_NAMESPACE}/likes`, { cache: "no-store" });
+      if (likeSent) return; // the visitor already liked while this was loading; keep the fresher value
       if (res.ok) {
         const data = await res.json();
         likeCountEl.textContent = data.value.toLocaleString();
       } else {
-        likeCountEl.textContent = "0";
+        likeCountEl.textContent = "0"; // counter not created yet: the first like will create it
       }
     } catch (err) {
-      likeCountEl.textContent = "—";
+      if (!likeSent) likeCountEl.textContent = "—";
     }
-
-    likeBtn.addEventListener("click", async () => {
-      if (localStorage.getItem(LIKE_STORAGE_KEY) === "1") return; // like once per visitor
-      likeBtn.classList.add("liked");
-      localStorage.setItem(LIKE_STORAGE_KEY, "1");
-      const prev = parseInt(likeCountEl.textContent.replace(/,/g, ""), 10) || 0;
-      likeCountEl.textContent = (prev + 1).toLocaleString(); // optimistic update
-      try {
-        const res = await fetch(`${ABACUS_BASE}/hit/${COUNTER_NAMESPACE}/likes`);
-        const data = await res.json();
-        likeCountEl.textContent = data.value.toLocaleString();
-      } catch (err) {
-        /* optimistic value already shown; harmless if the request fails */
-      }
-    });
   }
 
   /* ---------------- INIT ---------------- */
