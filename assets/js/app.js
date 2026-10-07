@@ -336,10 +336,11 @@
      real GitHub Pages URL(s) below once every volume is live. Until then,
      the link is inert (points to "#") rather than guessing a URL. */
     const SERIES_LINKS = [
-      { label: "Volume I — Quantum Computers (Textbook)", url: "https://skjaindr.github.io/Quantum-Computing.book-open-1/" },
-      { label: "Volume II — Quantum Algorithms & Complexity (Textbook)", url: "https://skjaindr.github.io/Quantum-Computing.book-open-2/" },
-      { label: "Volume III — Quantum Hardware, Error Correction & Applications", url: "https://skjaindr.github.io/Quantum-Computing.book-open-3" },
-      { label: "Lab Manual I — Foundational Quantum Experiments", url: "https://skjaindr.github.io/quantum-computing-lab-manual-1-site-plain/" },
+    { label: "Volume I — Quantum Computers (Textbook)", url: "https://skjaindr.github.io/Quantum-Computing.book-open-1/" },
+    { label: "Volume II — Quantum Algorithms & Complexity (Textbook)", url: "https://skjaindr.github.io/Quantum-Computing.book-open-2/" },
+    { label: "Volume III — Quantum Hardware, Error Correction & Applications", url: "https://skjaindr.github.io/Quantum-Computing.book-open-3" },
+    { label: "Laboratory Manual I — Hands-on Qiskit Experiments", url: "https://skjaindr.github.io/Quantum-Computing.labmanual-open-1/" },
+    { label: "Laboratory Manual II — Advanced Experiments - Security, Hardware Platforms and Applications", url: "https://skjaindr.github.io/Quantum-Computing.labmanual-open-2/" },
   ];
 
   function initSeriesLinks() {
@@ -392,7 +393,7 @@
       localStorage.setItem(LIKE_STORAGE_KEY, "1");
       if (!isNaN(prev)) likeCountEl.textContent = (prev + 1).toLocaleString(); // optimistic update
       try {
-        const res = await fetch(`${ABACUS_BASE}/hit/${COUNTER_NAMESPACE}/likes`, { cache: "no-store" });
+        const res = await fetch(`${ABACUS_BASE}/hit/${COUNTER_NAMESPACE}/likes`);
         if (!res.ok) throw new Error("HTTP " + res.status);
         const data = await res.json();
         likeCountEl.textContent = data.value.toLocaleString();
@@ -407,7 +408,7 @@
 
     // Read the shared like count from the server on every visit (never from the browser cache).
     try {
-      const res = await fetch(`${ABACUS_BASE}/get/${COUNTER_NAMESPACE}/likes`, { cache: "no-store" });
+      const res = await fetch(`${ABACUS_BASE}/get/${COUNTER_NAMESPACE}/likes`);
       if (likeSent) return; // the visitor already liked while this was loading; keep the fresher value
       if (res.ok) {
         const data = await res.json();
